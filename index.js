@@ -345,10 +345,6 @@ async function run() {
           });
 
 
-        // app.post('/payments', async (req, res) => {
-        //     const payment = req.body;
-        //     const insertResult = await paymentCollection.insertOne(payment);
-
         //     const query = { classId: payment.classId };
         //     const deleteResult = await cartsCollection.deleteOne(query);
 
