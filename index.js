@@ -210,7 +210,7 @@ async function run() {
         })
 
 
-        //-----------------Instructor--------------------- 
+        //----------Instructor--------- 
 
         //get all class data
         app.get('/class', async (req, res) => {
