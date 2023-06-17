@@ -274,11 +274,7 @@ async function run() {
         })
 
 
-
-
-
-
-        //---------------------Student----------------------
+        //-------Student-------------
         app.get('/carts', async (req, res) => {
             const email = req.query.email;
 
