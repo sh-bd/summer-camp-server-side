@@ -346,9 +346,6 @@ async function run() {
 
 
 
-        //     res.send({ insertResult, deleteResult });
-        // })
-
         app.post('/payments', async (req, res) => {
             try {
               const payment = req.body;
