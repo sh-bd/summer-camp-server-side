@@ -89,8 +89,7 @@ async function run() {
             res.send(result);
         });
 
-
-        //------------------Admin----------------------------
+// -----------Admin------------
 
         //admin panel users data
         app.get('/users', async (req, res) => {
