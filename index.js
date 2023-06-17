@@ -33,7 +33,6 @@ const verifyJWT = (req, res, next) => {
     })
 }
 
-
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.qtselqx.mongodb.net/?retryWrites=true&w=majority`;
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
@@ -89,7 +88,7 @@ async function run() {
             res.send(result);
         });
 
-// -----------Admin------------
+        // -----------Admin------------
 
         //admin panel users data
         app.get('/users', async (req, res) => {
@@ -209,8 +208,7 @@ async function run() {
             res.send(result);
         })
 
-
-        //----------Instructor--------- 
+        //--------Instructor------- 
 
         //get all class data
         app.get('/class', async (req, res) => {
@@ -220,14 +218,13 @@ async function run() {
 
         app.get('/topClass', async (req, res) => {
             try {
-              const result = await classCollection.find().sort({ enClass: -1 }).limit(6).toArray();
-              res.send(result);
+                const result = await classCollection.find().sort({ enClass: -1 }).limit(6).toArray();
+                res.send(result);
             } catch (error) {
-              console.error(error);
-              res.status(500).send({ error: true, message: 'Internal server error' });
+                console.error(error);
+                res.status(500).send({ error: true, message: 'Internal server error' });
             }
-          });
-          
+        });
 
         //get one specific data
         app.get('/class/:id', async (req, res) => {
@@ -273,7 +270,6 @@ async function run() {
             res.send(result);
         })
 
-
         //-------Student-------
         app.get('/carts', async (req, res) => {
             const email = req.query.email;
@@ -299,7 +295,7 @@ async function run() {
 
             const existingCarts = await cartsCollection.findOne(item);
 
-            if(existingCarts){
+            if (existingCarts) {
                 console.log(existingCarts);
                 res.status(400).send('Selected class already exists');
                 return;
@@ -308,7 +304,6 @@ async function run() {
             const result = await cartsCollection.insertOne(item);
             res.send(result);
         })
-
 
         app.delete('/carts/:id', async (req, res) => {
             const id = req.params.id;
@@ -337,47 +332,47 @@ async function run() {
         app.get('/payments', async (req, res) => {
             let query = {};
             if (req.query?.email) {
-              query = { email: req.query.email }
+                query = { email: req.query.email }
             }
-                    
+
             const result = await paymentCollection.find(query).sort({ date: -1 }).toArray();
             res.send(result);
-          });
+        });
 
         app.post('/payments', async (req, res) => {
             try {
-              const payment = req.body;
-              const insertResult = await paymentCollection.insertOne(payment);
-          
-              const query = { classId: payment.classId };
-              const cart = await cartsCollection.findOne(query);
-              if (!cart) {
-                return res.status(404).send({ error: true, message: 'Cart not found' });
-              }
-          
-              const updateClassQuery = { _id: new ObjectId(cart.classId) };
-              const classUpdate = {
-                $inc: { enClass: 1, seat: -1 },
-                $currentDate: { updatedAt: true }
-              };
-              const updateResult = await classCollection.updateOne(updateClassQuery, classUpdate);
-              if (updateResult.modifiedCount !== 1) {
-                return res.status(500).send({ error: true, message: 'Failed to update class' });
-              }
-          
-              const deleteResult = await cartsCollection.deleteOne(query);
+                const payment = req.body;
+                const insertResult = await paymentCollection.insertOne(payment);
 
-              if (deleteResult.deletedCount !== 1) {
-                return res.status(500).send({ error: true, message: 'Failed to delete cart' });
-              }
-          
-              res.send({ insertResult, deleteResult });
+                const query = { classId: payment.classId };
+                const cart = await cartsCollection.findOne(query);
+                if (!cart) {
+                    return res.status(404).send({ error: true, message: 'Cart not found' });
+                }
+
+                const updateClassQuery = { _id: new ObjectId(cart.classId) };
+                const classUpdate = {
+                    $inc: { enClass: 1, seat: -1 },
+                    $currentDate: { updatedAt: true }
+                };
+                const updateResult = await classCollection.updateOne(updateClassQuery, classUpdate);
+                if (updateResult.modifiedCount !== 1) {
+                    return res.status(500).send({ error: true, message: 'Failed to update class' });
+                }
+
+                const deleteResult = await cartsCollection.deleteOne(query);
+
+                if (deleteResult.deletedCount !== 1) {
+                    return res.status(500).send({ error: true, message: 'Failed to delete cart' });
+                }
+
+                res.send({ insertResult, deleteResult });
             } catch (error) {
-              console.error(error);
-              res.status(500).send({ error: true, message: 'Internal server error' });
+                console.error(error);
+                res.status(500).send({ error: true, message: 'Internal server error' });
             }
-          });
-          
+        });
+
         // Send a ping to confirm a successful connection
         await client.db("admin").command({ ping: 1 });
         console.log("Pinged your deployment. You successfully connected to MongoDB!");
