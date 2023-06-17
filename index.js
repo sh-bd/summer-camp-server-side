@@ -345,8 +345,6 @@ async function run() {
           });
 
 
-        //     const query = { classId: payment.classId };
-        //     const deleteResult = await cartsCollection.deleteOne(query);
 
         //     res.send({ insertResult, deleteResult });
         // })
