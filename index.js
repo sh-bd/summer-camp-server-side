@@ -388,12 +388,6 @@ async function run() {
 }
 run().catch(console.dir);
 
-
-
-
-
-
-
 app.get('/', (req, res) => {
     res.send(`The Summer Camp server is running on port ${port}`)
 })
