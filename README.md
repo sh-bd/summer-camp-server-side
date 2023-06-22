@@ -7,9 +7,9 @@ Client link – [https://summer-camp-sh4mim.netlify.app/](https://summer-camp-sh
 
 Server link - [https://summer-camp-server-sh4mim.vercel.app/](https://summer-camp-server-sh4mim.vercel.app/)
 
-Client repository - [https://github.com/programming-hero-web-course1/b712-summer-camp-client-side-sh-bd](https://github.com/programming-hero-web-course1/b712-summer-camp-client-side-sh-bd)
+Client repository - [https://github.com/sh-bd/summer-camp-client-side](https://github.com/sh-bd/summer-camp-client-side)
 
-Server repository - [https://github.com/programming-hero-web-course1/b7a12-summer-camp-server_side-sh-bd](https://github.com/programming-hero-web-course1/b7a12-summer-camp-server_side-sh-bd)
+Server repository - [https://github.com/sh-bd/summer-camp-server-side](https://github.com/sh-bd/summer-camp-server-side)
 
 ## Languages and Tools:
 <div align="left">
@@ -26,13 +26,13 @@ Server repository - [https://github.com/programming-hero-web-course1/b7a12-summe
 Clone the project
 
 ```bash
-  git clone https://github.com/programming-hero-web-course1/b7a12-summer-camp-server_side-sh-bd.git
+  git clone https://github.com/sh-bd/summer-camp-server-side.git
 ```
 
 Go to the project directory
 
 ```bash
-  cd b7a12-summer-camp-server_side-sh-bd
+  cd summer-camp-server-side
 ```
 
 Install dependencies
